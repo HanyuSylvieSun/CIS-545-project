@@ -13,13 +13,13 @@ class ClothingSpider(scrapy.Spider):
         for item in response.css('div.s-item-container'):
             link = item.css('a.a-link-normal.a-text-normal ::attr(href)').extract()[0]
             print(link)
-            scrapy.Request(link, callback=self.parse_item)     
+            yield scrapy.Request(link, callback=self.parse_item)     
 
     def parse_item(self, response):
-    	title = response.css('#productTitle::text').extract_first().strip()
-    	brand = response.css('#brand').attrib['href'].split("/")[1]
-    	price = response.css('#priceblock_ourprice::text').extract()[0]
-    	rate = response.css('span.a-icon-alt::text').extract_first().split(" ")[0]
-    	category = response.xpath("//div[@id='wayfinding-breadcrumbs_feature_div']/ul/li/span[@class='a-list-item']/a/text()").extract()[-1].strip()
-    	features = [x.strip() for x in response.xpath("//div[@id='feature-bullets']/ul/li/span[@class='a-list-item']/text()").extract()]
+        title = response.css('#productTitle::text').extract_first().strip()
+        brand = response.css('#brand').attrib['href'].split("/")[1]
+        price = response.css('#priceblock_ourprice::text').extract()[0]
+        rate = response.css('span.a-icon-alt::text').extract_first().split(" ")[0]
+        category = response.xpath("//div[@id='wayfinding-breadcrumbs_feature_div']/ul/li/span[@class='a-list-item']/a/text()").extract()[-1].strip()
+        features = [x.strip() for x in response.xpath("//div[@id='feature-bullets']/ul/li/span[@class='a-list-item']/text()").extract()]
 
