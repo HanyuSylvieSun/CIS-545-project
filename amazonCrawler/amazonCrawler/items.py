@@ -11,4 +11,8 @@ import scrapy
 class AmazoncrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    brand = scrapy.Field()
+    category = scrapy.Field()
+    price = scrapy.Field()
+    rate = scrapy.Field()
+    description = scrapy.Field()
