@@ -16,14 +16,10 @@ class ClothingSpider(scrapy.Spider):
             scrapy.Request(link, callback=self.parse_item)     
 
     def parse_item(self, response):
-        print("HERE")
-        for title in response.css('#productTitle::text').extract():
-            print("HERE")
-            print(title.strip())
-            yield title.strip()
-        return;
-        # brand
-        #response.css('#brand').attrib['href'].split("/")[1]
+    	title = response.css('#productTitle::text').extract_first().strip()
+    	brand = response.css('#brand').attrib['href'].split("/")[1]
+    	price = response.css('#priceblock_ourprice::text').extract()[0]
+    	rate = response.css('span.a-icon-alt::text').extract_first().split(" ")[0]
+    	category = response.xpath("//div[@id='wayfinding-breadcrumbs_feature_div']/ul/li/span[@class='a-list-item']/a/text()").extract()[-1].strip()
+    	features = [x.strip() for x in response.xpath("//div[@id='feature-bullets']/ul/li/span[@class='a-list-item']/text()").extract()]
 
-        # for next_page in response.css('a.next-posts-link'):
-        #     yield response.follow(next_page, self.parse)
