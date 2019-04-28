@@ -7,15 +7,13 @@ import csv
 class ClothingSpider(scrapy.Spider):
     name = 'clothing'
     allowed_domains = ['www.amazon.com']
-    start_urls = ["https://www.amazon.com/Mens-Shirts/b?ie=UTF8&node=2476517011"]
-    # with open('../../../category_to_link_men.txt', 'r') as f:
-    # 	for row in f:
-    # 		print(row)
-    # 		start_urls.append(row)
-    # with open('../../../category_to_link_men.txt', 'r') as f:
-    # 	for row in f:
-    # 		print(row)
-    # 		start_urls.append(row)
+    start_urls = []
+    with open('../../../category_to_link_men.txt', 'r') as f:
+    	for row in f:
+    		start_urls.append(row.strip())
+    with open('../../../category_to_link_men.txt', 'r') as f:
+    	for row in f:
+    		start_urls.append(row.strip())
     
     # Get link for each items and query
     def parse(self,response):
