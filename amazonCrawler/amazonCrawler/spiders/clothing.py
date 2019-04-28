@@ -11,11 +11,11 @@ class ClothingSpider(scrapy.Spider):
     with open('men.csv', 'r') as f:
 		reader = csv.reader(f)
     	for row in reader:
-        	start_urls.add(row.split(",")[1])
+        	start_urls.append(row.split(",")[1])
     with open('women.csv', 'r') as f:
 		reader = csv.reader(f)
     	for row in reader:
-        	start_urls.add(row.split(",")[1])
+        	start_urls.append(row.split(",")[1])
     
     # Get link for each items and query
     def parse(self,response):
