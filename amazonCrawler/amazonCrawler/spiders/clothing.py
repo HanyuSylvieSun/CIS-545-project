@@ -8,15 +8,14 @@ class ClothingSpider(scrapy.Spider):
     name = 'clothing'
     allowed_domains = ['www.amazon.com']
     start_urls = []
-    with open('../../../category_to_link_men.csv', 'r') as f:
-    	reader = csv.reader(f)
-    	for row in reader:
-    		print(row[1])
-    		start_urls.append(row[1])
     with open('../../../category_to_link_men.txt', 'r') as f:
-    	reader = csv.reader(f)
-    	for row in reader:
-    		start_urls.append(row[1])
+    	for row in f:
+    		print(row)
+    		start_urls.append(row)
+    with open('../../../category_to_link_men.txt', 'r') as f:
+    	for row in f:
+    		print(row)
+    		start_urls.append(row)
     
     # Get link for each items and query
     def parse(self,response):
