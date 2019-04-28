@@ -33,5 +33,5 @@ class ClothingSpider(scrapy.Spider):
     	category = response.xpath("//div[@id='wayfinding-breadcrumbs_feature_div']/ul/li/span[@class='a-list-item']/a/text()").extract()[-1].strip()
     	features = [x.strip() for x in response.xpath("//div[@id='feature-bullets']/ul/li/span[@class='a-list-item']/text()").extract()]
     	colors = [x.split(" ")[-1] for x in response.xpath("//div[@id='variation_color_name']/ul/li/@title").extract()]
-    	with open('items.txt', 'a', newline='\n') as f:
-    		f.write(brand+','+title+','+price+','+rate+','+category+','+str(features) + ',' + str(colors))
+    	with open('items.txt', 'a') as f:
+    		f.write(brand+','+title+','+price+','+rate+','+category+','+str(features) + ',' + str(colors) + '\n')
